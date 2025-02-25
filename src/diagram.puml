@@ -1,0 +1,107 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+
+
+InventoryManager <|- AddProduct
+InventoryManager <|-- FilterByPriceRange
+InventoryManager <|-- DeleteProduct
+InventoryManager <|--- ClearInventory
+InventoryManager <|--- CheckLowStock
+InventoryManager <|--- ViewProducts
+InventoryManager <|--- UpdateQuantity
+InventoryManager <|-- SortProductsByName
+InventoryManager <|-- SortProductsByPrice
+InventoryManager <|- SearchProduct
+Product <|-- InventoryManager
+
+class AddProduct {
+    InventoryManager inventoryManager
+    AddProduct(InventoryManager)
+    execute()
+}
+
+class CheckLowStock {
+    InventoryManager inventoryManager
+    CheckLowStock(InventoryManager)
+    execute()
+}
+
+class ClearInventory {
+    InventoryManager inventoryManager
+    ClearInventory(InventoryManager)
+    execute()
+}
+
+class DeleteProduct {
+    InventoryManager inventoryManager
+    DeleteProduct(InventoryManager)
+    execute()
+}
+
+class FilterByPriceRange {
+    InventoryManager inventoryManager
+    FilterByPriceRange(InventoryManager)
+    execute()
+}
+
+class InventoryManager {
+    List<Product> inventory
+    static String FILE_NAME
+    loadInventory()
+    saveInventory()
+    getInventory(): List<Product>
+    addProduct(Product)
+    findProductById(int): Product
+    removeProduct(int)
+    clearInventory()
+}
+
+class Product {
+    int id
+    String name
+    int quantity
+    double price
+    Product(int, String, int, double)
+    getId(): int
+    getName(): String
+    getQuantity(): int
+    setQuantity(int)
+    getPrice(): double
+    toString(): String
+    fromString(String): Product
+    display(): String
+}
+
+class SearchProduct {
+    InventoryManager inventoryManager
+    SearchProduct(InventoryManager)
+    execute()
+}
+
+class SortProductsByName {
+    InventoryManager inventoryManager
+    SortProductsByName(InventoryManager)
+    execute()
+}
+
+class SortProductsByPrice {
+    InventoryManager inventoryManager
+    SortProductsByPrice(InventoryManager)
+    execute()
+}
+
+class UpdateQuantity {
+    InventoryManager inventoryManager
+    UpdateQuantity(InventoryManager)
+    execute()
+}
+
+class ViewProducts {
+    InventoryManager inventoryManager
+    ViewProducts(InventoryManager)
+    execute()
+}
+
+@enduml
